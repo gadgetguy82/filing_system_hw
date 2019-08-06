@@ -1,11 +1,20 @@
 package com.codeclan.homework.filingsystem.models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "folders")
 public class Folder {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
   private Long id;
+
+  @Column(name = "title")
   private String title;
+
   private List<File> files;
   private User user;
 
