@@ -1,5 +1,7 @@
 package com.codeclan.homework.filingsystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "folders")
 public class Folder {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
@@ -15,8 +18,9 @@ public class Folder {
   @Column(name = "title")
   private String title;
 
+  @JsonIgnore
+  @OneToMany(mappedBy = "folder", fetch = FetchType.LAZY)
   private List<File> files;
-  private User user;
 
   public Folder(String title) {
     this.title = title;
@@ -51,11 +55,8 @@ public class Folder {
     this.files = files;
   }
 
-  public User getUser() {
-    return user;
+  public void addFile(File file) {
+    this.files.add(file);
   }
 
-  public void setUser(User user) {
-    this.user = user;
-  }
 }
