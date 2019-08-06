@@ -27,6 +27,10 @@ public class User {
     this.folders = new ArrayList<>();
   }
 
+  public User() {
+
+  }
+
   public Long getId() {
     return id;
   }
